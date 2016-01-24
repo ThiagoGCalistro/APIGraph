@@ -124,7 +124,7 @@ echo "</div>";
 	border-radius:4px;
 	border:1px solid #bbb;
 	box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);
-	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25)}
+	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);}
 
 /*texto*/
 text{
