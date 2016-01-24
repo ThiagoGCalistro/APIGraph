@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!doctype html>
 <html>
 <head>
@@ -44,74 +43,15 @@ $("#grafico line").click(function(e){
 });
 </script>
 </head>
-<?php
-	$conexao = mysql_connect("localhost", "root", "") or die(mysql_error()); 
-	$db = mysql_select_db("bd_graph", $conexao);
-	error_reporting(0);
-ini_set('display_errors', 0);
-$contador = $_GET['cont'];
-$ano = $_GET['ano'];
 
-
-
-
-$total_registros = 10;
-$limite = 5;
-$total_paginas = ceil($total_registros / $limite);
-$prevlink = $ano-1;
-$nextlink = $ano+1;
-$menor = $contador-12;
-$maior = $contador+12;	
-
-$data= date("Y");
-if (isset($ano) == $data){
-	
-	} else{
-<<<<<<< HEAD
-			if($data == "2017"){
-=======
-			if($data == "2014"){
->>>>>>> refs/remotes/origin/master
-				$contadx = 12;
-				}
-		header("Location:index.php?ano=".$data."&cont=".$contad."");
-		} 
-
-
-$_SESSION['i'] = 0;
-$i = 1;
-<<<<<<< HEAD
-if ($ano == '2016'){
-=======
-if ($ano == '2013'){
->>>>>>> refs/remotes/origin/master
-	$i = 1;
-	} else {
-		}
-						
-echo "<div id='paginacao' style='margin-top:10px'>";
-if($page > 1){
- echo "<a class='paginacao' href='index.php?ano=2013'><<</a>";
-    echo "<a class='paginacao' href='index.php?ano=".$prevlink."&cont=".$menor."'><b>&#9668;</b></a>";
-}else{
- echo "<a class='paginacao' href='index.php?ano=".$prevlink."&cont=".$menor."'><b>&#9668;</b></a>";
-}
-
-echo "<span class='numero_paginas'> (".$ano.") </span>";
-
-if($page < $total_paginas){
-    echo "<a class='paginacao' href='index.php?ano=".$nextlink."&cont=".$maior."'><b>&#9658;</b></a>";
-}else{
- echo "<span class='selecionado'>&#9658;</span>";
- echo "<span class='selecionado'>>></span>";
-}
-echo "</div>";
-?>
-
-</body>
-</html>
 <body>
+<form action="index.php" method="GET">
+<input type="submit" value="2013" name="ano" >
+<input type="submit" value="2014" name="ano" >
+</form>
 <?php 
+	$conexao = mysql_connect("127.0.0.1", "root", "") or die(mysql_error()); 
+	$db = mysql_select_db("bd_chiptronic", $conexao);
 	$date = $_GET['ano'];
 	$data = mysql_query('select * from tb_visitantes where data='.$date.'');
 	$lndata = mysql_fetch_array($data);
@@ -132,11 +72,7 @@ echo "</div>";
 	border-radius:4px;
 	border:1px solid #bbb;
 	box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);
-<<<<<<< HEAD
-	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);}
-=======
 	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25)}
->>>>>>> refs/remotes/origin/master
 
 /*texto*/
 text{
@@ -172,31 +108,7 @@ g:hover circle{
 circle{
 	fill:#1155cc;
 	stroke:#1155cc}
-	*{text-decoration:none}
-
-a.paginacao,
-span.selecionado{
- padding:5px;
- margin:3px;
- font-size:10px;
- border-radius:3px;
- background:#eee;
- border:1px solid #ddd}
-
-a.paginacao{color:#333}
-
-a.paginacao:hover{
- opacity:0.8;
- color:#09F}
- 
-span.selecionado{
- background:#fff;
- border:1px solid #fff;
- color:#CCC}
- 
-span.numero_paginas{
- font-size:10px;
- color:#999}
+	
 /*animações*/
 <?php  
 $segundos = 200;
@@ -256,12 +168,10 @@ span.decresceu{color:#F00}
 </g>
 
 <!--gráfico-->
+
 <?php
-<<<<<<< HEAD
-if($ano=='2016'){
-=======
-if($ano=='2013'){
->>>>>>> refs/remotes/origin/master
+if($date=='2013'){
+	
 	$jan = 0;//valor do x1
 	$x2jan = 50;//valor do x2
 	
@@ -277,10 +187,10 @@ if($ano=='2013'){
 <?php
 	$inicio = 0;
 	$xf = 50;
-	//$i = 1;
+	$i = 1;
 	
 	$sql = mysql_query('select * from tb_visitantes where cod_visitante >= 2 and data='.$date.'');
-	$nummes = mysql_num_rows($sql);
+		$nummes = mysql_num_rows($sql);
 	$totalmes = ($nummes*50)+50;
 	while($ln = mysql_fetch_array($sql)){
 	$qtd = $ln['quantidade_visitante']; 
@@ -302,8 +212,6 @@ if($ano=='2013'){
 ?>
 <?php echo $totalmes ?>,0" style="fill:#dbe8ff;fill-opacity:0.5"/>
 </g>
-<?php
-?>
 <g id="<?php echo $primeiras_letras_1 ?>"> 
   <a class="linhas" href="valores.php?cod_visitante=1" title="ver quantidade de visitantes">
   <g id="linhas-grafico" transform="translate(0,200) scale(1,-1)"> 
@@ -314,14 +222,11 @@ if($ano=='2013'){
   </g>
   </a>
 </g>
+
 <?php
 
 
-
-} else {
-	
-	
-	
+} else if($date=='2014'){
 	$jan = 0;//valor do x1
 	$x2jan = 50;//valor do x2
 	
@@ -337,7 +242,8 @@ if($ano=='2013'){
 	<?php
 	$inicio = -50;
 	$xf = 0;
-	$cont = $contador;
+	$i = 12;
+	
 	$sql = mysql_query('select * from tb_visitantes where cod_visitante >= 2 and data='.$date.'');
 	$nummes = mysql_num_rows($sql);
 	$totalmes = $nummes*50;
@@ -349,14 +255,14 @@ if($ano=='2013'){
 	$inicio = $inicio+50;
 	$xf = $xf+50;
 	
-	$sqlx = mysql_query('select * from tb_visitantes where cod_visitante = '.$cont.' and data='.$date.'');
+	$sqlx = mysql_query('select * from tb_visitantes where cod_visitante = '.$i.' and data='.$date.'');
 	$lnx = mysql_fetch_array($sqlx);
 	$qtd2 = $lnx['quantidade_visitante'];
 	$qtd22 = $qtd2/100;
 ?>
 <?php echo $xf ?>,<?php echo $visit.' ' ?>
 <?php
-	$cont++; }
+	$i++; }
 ?>
 <?php echo $totalmes ?>,0" style="fill:#dbe8ff;fill-opacity:0.5"/>
 </g>
@@ -370,9 +276,11 @@ if($ano=='2013'){
   </g>
   </a>
 </g>
-<?php
+
+	<?php
 }
-?>
+?> 
+
 
 
 
@@ -380,8 +288,12 @@ if($ano=='2013'){
 
 
 <!-- Começo Grafico 2013 -->
+
+
 <?php
-if($ano=='2013'){
+if($date=='2013'){
+?>
+<?php
 	$inicio = 0;
 	$xf = 50;
 	$i = 1;
@@ -416,14 +328,29 @@ if($ano=='2013'){
 </g>
 <?php
 	$i++; }
-} else {
+?>
+
+
+<!-- Fim do grafico 2013 -->
+
+
+
+<!-- começo do grafico 2014 -->
+
+
+
+
+
+
+<?php } else if ($date == 2014){
+	?>
+<!--fim do preenchimento de objeto-->
+	<?php
 	$inicio = -50;
 	$xf = 0;
-	//$i = 12;
-	$cont = $contador;
+	$i = 12;
+	
 	$sql = mysql_query('select * from tb_visitantes where cod_visitante >= 2 and data='.$date.'');
-	$numt = mysql_num_rows($sql);
-		$totalmes = $nummes*50;
 	while($ln = mysql_fetch_array($sql)){
 	$qtd = $ln['quantidade_visitante']; 
 	$visit = $qtd/100;
@@ -433,12 +360,12 @@ if($ano=='2013'){
 	$inicio = $inicio+50;
 	$xf = $xf+50;
 	
-	$sqlx = mysql_query('select * from tb_visitantes where cod_visitante = '.$cont.' and data='.$date.'');
+	$sqlx = mysql_query('select * from tb_visitantes where cod_visitante = '.$i.' and data='.$date.'');
 	$lnx = mysql_fetch_array($sqlx);
 	$qtd2 = $lnx['quantidade_visitante'];
 	$qtd22 = $qtd2/100;
+	
 ?>
-</g>
 <!--divisão de mês-->
 <g id="<?php echo $primeiras_letras_2 ?>">
   <a class="linhas" href="valores.php?cod_visitante=<?php echo $ln['cod_visitante'] ?>&qtd2=<?php echo $qtd2 ?>&ano=<?php echo $date ?>" title="ver quantidade de visitantes">
@@ -451,10 +378,12 @@ if($ano=='2013'){
   </a>
 </g>
 <?php
-	$cont++; }
-	}
+	$i++; }
 ?>
-
+	<?php
+	}?>
+	
+	
 <!-- Fim do grafico 2014 -->
 	
 <div id="content"></div>
@@ -463,17 +392,7 @@ if($ano=='2013'){
 $compara = mysql_query('SELECT SUM( quantidade_visitante ) AS soma FROM tb_visitantes where data='.$date.'');
 $cont = mysql_fetch_array($compara);
 $valor_total = $cont["soma"];
-echo '<br>Total de visitas: '.number_format($valor_total,0,"",".").'<br>';
-$media = $valor_total/12;
-echo 'Media de visitas: '.number_format($media,0,"",".").'<br>';
-?>
-
-<!-- Começando Gráfico de relatorio de visitantes -->
-<?php 
-$sqll = mysql_query('SELECT pais_local, COUNT(*) as conta FROM tb_localizacao WHERE pais_local <> "" GROUP BY pais_local HAVING COUNT(*) >1');
-while ($ft = mysql_fetch_array($sqll)){
-echo $ft['pais_local'].': '.$ft['conta']."<br />";
-}
+echo number_format($valor_total,0,"",".");
 ?>
 </body>
 </html>
