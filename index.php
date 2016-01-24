@@ -67,11 +67,7 @@ $data= date("Y");
 if (isset($ano) == $data){
 	
 	} else{
-<<<<<<< HEAD
 			if($data == "2017"){
-=======
-			if($data == "2014"){
->>>>>>> refs/remotes/origin/master
 				$contadx = 12;
 				}
 		header("Location:index.php?ano=".$data."&cont=".$contad."");
@@ -80,18 +76,14 @@ if (isset($ano) == $data){
 
 $_SESSION['i'] = 0;
 $i = 1;
-<<<<<<< HEAD
 if ($ano == '2016'){
-=======
-if ($ano == '2013'){
->>>>>>> refs/remotes/origin/master
 	$i = 1;
 	} else {
 		}
 						
 echo "<div id='paginacao' style='margin-top:10px'>";
 if($page > 1){
- echo "<a class='paginacao' href='index.php?ano=2013'><<</a>";
+ echo "<a class='paginacao' href='index.php?ano=2016'><<</a>";
     echo "<a class='paginacao' href='index.php?ano=".$prevlink."&cont=".$menor."'><b>&#9668;</b></a>";
 }else{
  echo "<a class='paginacao' href='index.php?ano=".$prevlink."&cont=".$menor."'><b>&#9668;</b></a>";
@@ -132,11 +124,7 @@ echo "</div>";
 	border-radius:4px;
 	border:1px solid #bbb;
 	box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);
-<<<<<<< HEAD
 	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25);}
-=======
-	-webkit-box-shadow:1px 1px 2px 0 rgba(0,0,0,0.25)}
->>>>>>> refs/remotes/origin/master
 
 /*texto*/
 text{
@@ -257,11 +245,7 @@ span.decresceu{color:#F00}
 
 <!--gráfico-->
 <?php
-<<<<<<< HEAD
 if($ano=='2016'){
-=======
-if($ano=='2013'){
->>>>>>> refs/remotes/origin/master
 	$jan = 0;//valor do x1
 	$x2jan = 50;//valor do x2
 	
@@ -379,9 +363,9 @@ if($ano=='2013'){
 
 
 
-<!-- Começo Grafico 2013 -->
+<!-- Começo Grafico 2016 -->
 <?php
-if($ano=='2013'){
+if($ano=='2016'){
 	$inicio = 0;
 	$xf = 50;
 	$i = 1;
@@ -455,7 +439,7 @@ if($ano=='2013'){
 	}
 ?>
 
-<!-- Fim do grafico 2014 -->
+<!-- Fim do grafico 2017 -->
 	
 <div id="content"></div>
 </svg>
